@@ -27,8 +27,15 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-theme-userbase-ed`,
+      options: {
+        APP_ID: "3940339a-c3e4-4850-befb-29825465a155",
+        REMEMBER_ME: "local",
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};
