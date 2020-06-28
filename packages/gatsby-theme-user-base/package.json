@@ -1,6 +1,5 @@
 {
   "name": "gatsby-theme-user-base",
-  "private": true,
   "description": "A Gatsby Theme to incorporate Userbase into your Gatsby website.",
   "version": "0.1.0",
   "author": "Jamie Bradley <jamie@endeavour-digital.com>",
