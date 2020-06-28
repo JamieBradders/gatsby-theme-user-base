@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/layout";
-import { useUserbase } from "gatsby-theme-userbase-ed";
+import { useUserbase } from "gatsby-theme-user-base";
 import { useEffect } from "react";
 import { navigate } from "gatsby";
 

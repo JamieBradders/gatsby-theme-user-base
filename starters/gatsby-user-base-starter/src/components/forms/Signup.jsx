@@ -4,7 +4,7 @@
 import React, { useState } from "react";
 import { navigate } from "gatsby";
 import { useFormik } from "formik";
-import { signUp, useUserbase } from "gatsby-theme-userbase-ed";
+import { signUp, useUserbase } from "gatsby-theme-user-base";
 
 const SignupForm = () => {
   const [, dispatch] = useUserbase();

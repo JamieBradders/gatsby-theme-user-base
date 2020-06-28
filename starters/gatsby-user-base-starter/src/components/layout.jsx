@@ -1,5 +1,5 @@
 import React from "react";
-import { useUserbase } from "gatsby-theme-userbase-ed";
+import { useUserbase } from "gatsby-theme-user-base";
 
 import Header from "./header";
 

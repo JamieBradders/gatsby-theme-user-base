@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -28,10 +32,10 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-theme-userbase-ed`,
+      resolve: `gatsby-theme-user-base`,
       options: {
-        APP_ID: "3940339a-c3e4-4850-befb-29825465a155",
-        REMEMBER_ME: "local",
+        APP_ID: process.env.APP_ID,
+        REMEMBER_ME: process.env.REMEMBER_ME || "none",
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

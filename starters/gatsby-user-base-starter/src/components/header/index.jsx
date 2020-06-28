@@ -1,5 +1,5 @@
 import React from "react";
-import { useUserbase, signOut } from "gatsby-theme-userbase-ed";
+import { useUserbase, signOut } from "gatsby-theme-user-base";
 import { navigate, Link } from "gatsby";
 
 const Header = () => {

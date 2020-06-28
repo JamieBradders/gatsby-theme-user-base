@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import { useUserbase } from "gatsby-theme-userbase-ed";
+import { useUserbase } from "gatsby-theme-user-base";
 
 import Layout from "../components/layout";
 
