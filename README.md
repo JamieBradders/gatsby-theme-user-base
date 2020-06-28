@@ -12,7 +12,7 @@ There is [another Userbase theme](https://github.com/dayhaysoos/gatsby-theme-use
 
 The theme is equipped with a Provider that will give you a central store for persisting a Userbase session across pages. The theme will also provide you with a handful of utility methods that makes handling Userbase requests a little bit easier for you.
 
-For example, let's assume you wanted to create a submission callback function that will let a user log into their account.
+For example, let's assume you want to create a submission callback function that will let a user log into their account.
 
 ```jsx
 import { navigate } from 'gatsby'
@@ -44,7 +44,7 @@ const LoginForm = () => {
 
 ## Available Helpers
 
-This project is in it's very early stages, so functionality is limited. If we haven't provided a helper for a Userbase method that you need, then don't worry, you can still access the Userbase library.
+This project is in it's very early stages, so functionality is limited. If I haven't provided a helper for a Userbase method that you need, then don't worry, you can still access the Userbase library directly.
 
 ```js
 
@@ -79,6 +79,7 @@ const handleForgottenPassword = async ({ username }) => {
 ### List of Helpers
 
 The following helpers have been developed and tested:
+
 - ✅ `init`
 - ✅ `signUp`
 - ✅ `signIn`
@@ -92,6 +93,6 @@ The following helpers are to be included within the theme and are yet to be work
 
 ## What about Stripe Payments?
 
-We haven't incorporated Userbase Payments into the theme at this stage. For the time being we wanted to start the project with the basics and then increment over time. However, as with the forgot password example shown above, you will still be able to leverage the Userbase SDK and integrate this into your Gatsby website accordingly.
+I haven't incorporated Userbase Payments into the theme at this stage. For the time being I start with the basics and then increment over time. However, as with the forgot password example shown above, you will still be able to leverage the Userbase SDK and integrate this into your Gatsby website accordingly.
 
 Please refer to the [Userbase SDK documentation](https://userbase.com/docs/sdk/) for further information.
