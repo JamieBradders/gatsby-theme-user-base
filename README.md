@@ -10,7 +10,7 @@ There is [another Userbase theme](https://github.com/dayhaysoos/gatsby-theme-use
 
 ## Why use this theme?
 
-The theme is equipped with a Provider that will give you a central store for persisting a Userbase session across pages. The theme will also provide you with a handful of utility methods that makes handling Userbase requests that little bit easier for you.
+The theme is equipped with a Provider that will give you a central store for persisting a Userbase session across pages. The theme will also provide you with a handful of utility methods that makes handling Userbase requests a little bit easier for you.
 
 For example, let's assume you wanted to create a submission callback function that will let a user log into their account.
 
