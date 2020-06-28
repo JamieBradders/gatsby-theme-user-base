@@ -1,22 +1,20 @@
 import React, { useContext, useReducer, createContext, useEffect } from "react";
+import { Session } from "userbase-js";
 
 import { initialState, reducer } from "./reducer";
 import { init } from "./helpers";
 
-// Create user context
 export const UserbaseContext = createContext({});
 
-export const UserbaseProvider = ({ children, appId, rememberMe = "none" }) => {
-  // Build up reducer
+export const UserbaseProvider = ({ children, appId }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // Define some actions
-  const setUser = (session) =>
+  const setUser = (session: Session) => {
     dispatch({ type: "setUser", payload: { ...session.user } });
+  };
 
-  // With useEffect, if we have no user then we can create the session
   useEffect(() => {
-    if (!state.user.userId) {
+    if (!state.user["userId"]) {
       async function initialize() {
         try {
           const res = await init(appId);
@@ -38,10 +36,9 @@ export const UserbaseProvider = ({ children, appId, rememberMe = "none" }) => {
         }
       }
 
-      // Call initialize()
       initialize();
     }
-  }, [state.user.userId, appId]);
+  }, [state.user["userId"], appId]);
 
   return (
     <UserbaseContext.Provider value={[state, dispatch]}>

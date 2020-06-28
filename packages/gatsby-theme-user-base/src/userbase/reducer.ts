@@ -1,13 +1,11 @@
-/**
- * Interface and Types
- */
+import { StateType, ActionType } from "./types";
 
 const initialState = {
   user: {},
   loading: true,
 };
 
-const reducer = (state, action) => {
+const reducer = (state: StateType, action: ActionType) => {
   switch (action.type) {
     case "setUser":
       return {
