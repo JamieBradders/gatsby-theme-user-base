@@ -2,10 +2,10 @@
 
 Thanks for checking out my project. This theme is designed to assist with the integration of a new serverless user management system called [Userbase](https://userbase.com).
 
-## Example
+## Example
 To see a working example of the theme in action then feel free to take a look at the rough and ready starter project that I have added to this repo in `starters/gatsby-user-base-starter`.
 
-## Credits
+## Credits
 There is [another Userbase theme](https://github.com/dayhaysoos/gatsby-theme-userbase) developed by [dayhaysoos](https://github.com/dayhaysoos). This theme takes a lot of inspiration from their project. I decided to run with my own version of a theme for the purpose of learning and I wanted to take this theme in a direction as it will be used as part of a separate personal project.
 
 ## Why use this theme?
