@@ -8,6 +8,37 @@ To see a working example of the theme in action then feel free to take a look at
 ## Credits
 There is [another Userbase theme](https://github.com/dayhaysoos/gatsby-theme-userbase) developed by [dayhaysoos](https://github.com/dayhaysoos). This theme takes a lot of inspiration from their project. I decided to run with my own version of a theme for the purpose of learning and I wanted to take this theme in a different direction as it will be used as part of a personal project.
 
+## Installation
+From your gatbsy prodject you will need to install the package from NPM with `yarn` or `npm`:
+
+**NPM Installation**
+
+```
+npm i gatsby-theme-user-base --save
+```
+
+**Yarn Installation**
+
+```
+yarn add gatsby-theme-user-base
+```
+
+Once installed, add the following to your `gatsby-config.js` file.
+
+```js
+{
+  resolve: `gatsby-theme-user-base`,
+  options: {
+    APP_ID: process.env.APP_ID,
+    REMEMBER_ME: process.env.REMEMBER_ME || "none",
+  },
+},
+```
+
+In this example the `APP_ID` and `REMEMBER_ME` options are defined within a `.env` file. Note that `REMEMBER_ME` will default to `"none"` if nothing is supplied to this property.
+
+Finally, run `gatsby develop` and you're good to go!
+
 ## Why use this theme?
 
 The theme is equipped with a Provider that will give you a central store for persisting a Userbase session across pages. The theme will also provide you with a handful of utility methods that makes handling Userbase requests a little bit easier for you.
