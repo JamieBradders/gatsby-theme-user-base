@@ -1,6 +1,6 @@
-import userbase from "userbase-js";
+import userbase, { RememberMeOption } from "userbase-js";
 
-async function init(appId) {
+async function init(appId: string) {
   try {
     const session = await userbase.init({ appId });
     return {
@@ -13,7 +13,14 @@ async function init(appId) {
   }
 }
 
-async function signUp({ username, password, email, rememberMe }) {
+interface ISignUpBody {
+  username: string;
+  password: string;
+  rememberMe: RememberMeOption;
+  email?: string;
+}
+
+async function signUp({ username, password, email, rememberMe }: ISignUpBody) {
   try {
     const user = await userbase.signUp({
       username,
@@ -31,7 +38,13 @@ async function signUp({ username, password, email, rememberMe }) {
   }
 }
 
-async function signIn({ username, password, rememberMe }) {
+interface ISignInBody {
+  username: string;
+  password: string;
+  rememberMe: RememberMeOption;
+}
+
+async function signIn({ username, password, rememberMe }: ISignInBody) {
   try {
     const user = await userbase.signIn({
       username,
