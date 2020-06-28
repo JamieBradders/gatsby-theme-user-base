@@ -1,99 +1,101 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby's default starter
-</h1>
+# Gatsby Theme Userbase
 
-Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+Thanks for checking out my project. This theme is designed to assist with the integration of a new serverless user management system called [Userbase](https://userbase.com).
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
+## Example
 
-## 🚀 Quick start
+To see a working example of the theme in action then feel free to take a look at the rough and ready starter project that I have added to this repo in `starters/gatsby-user-base-starter`.
 
-1.  **Create a Gatsby site.**
+## Credits
 
-    Use the Gatsby CLI to create a new site, specifying the default starter.
+There is [another Userbase theme](https://github.com/dayhaysoos/gatsby-theme-userbase) developed by [dayhaysoos](https://github.com/dayhaysoos). This theme takes a lot of inspiration from their project. I decided to run with my own version of a theme for the purpose of learning and I wanted to take this theme in a different direction as it will be used as part of a personal project.
 
-    ```shell
-    # create a new Gatsby site using the default starter
-    gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
-    ```
+## Why use this theme?
 
-1.  **Start developing.**
+The theme is equipped with a Provider that will give you a central store for persisting a Userbase session across pages. The theme will also provide you with a handful of utility methods that makes handling Userbase requests a little bit easier for you.
 
-    Navigate into your new site’s directory and start it up.
+For example, let's assume you want to create a submission callback function that will let a user log into their account.
 
-    ```shell
-    cd my-default-starter/
-    gatsby develop
-    ```
+```jsx
+import { navigate } from "gatsby";
+import { signIn, useUserbase } from "gatsby-theme-user-base";
 
-1.  **Open the source code and start editing!**
+const LoginForm = () => {
+  const [state, dispatch] = useUserbase();
 
-    Your site is now running at `http://localhost:8000`!
+  const handleSubmit = async (values) => {
+    const { username, password } = values;
+    const body = { username, password };
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
+    const res = await signIn(body);
 
-    Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+    if (res.error) {
+      console.log(`Oops! Something went wrong: ${res.error}`);
+    } else {
+      // Update our Userbase Context
+      dispatch({ type: "setUser", payload: res.user });
 
-## 🧐 What's inside?
+      // You might want to navigate the user to the account page here
+      navigate("/account");
+    }
+  };
 
-A quick look at the top-level files and directories you'll see in a Gatsby project.
+  // The rest of your form...
+};
+```
 
-    .
-    ├── node_modules
-    ├── src
-    ├── .gitignore
-    ├── .prettierrc
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package-lock.json
-    ├── package.json
-    └── README.md
+## Available Helpers
 
-1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
+This project is in it's very early stages, so functionality is limited. If I haven't provided a helper for a Userbase method that you need, then don't worry, you can still access the Userbase library directly.
 
-2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
+```js
+/**
+ * Forgot Password is a method that we currently have
+ * no helper for. Therefore, you won't be able to import
+ * this from the `gatsby-theme-user-base` package.
+ */
 
-3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
+import { forgotPassword } from "userbase-js";
 
-4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
+// Example with Promise
+const handleForgottenPassword = ({ username }) => {
+  forgotPassword({ username })
+    .then((user) => {
+      // email with temporary password sent
+      console.log("this is user", user);
+    })
+    .catch((e) => console.error(e));
+};
 
-5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.org/docs/browser-apis/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
+// Async/Await Example
+const handleForgottenPassword = async ({ username }) => {
+  try {
+    const user = await forgotPassword({ username });
+    // email with temporary password sent
+    console.log("this is user", user);
+  } catch (e) {
+    console.error(e);
+  }
+};
+```
 
-6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.org/docs/gatsby-config/) for more detail).
+### List of Helpers
 
-7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.org/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
+The following helpers have been developed and tested:
 
-8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.org/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
+- ✅ `init`
+- ✅ `signUp`
+- ✅ `signIn`
+- ✅ `signOut`
 
-9.  **`LICENSE`**: Gatsby is licensed under the MIT license.
+The following helpers are to be included within the theme and are yet to be worked on:
 
-10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
+- `forgotPassword`
+- `updateUser`
+- `deleteUser`
 
-11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
+## What about Stripe Payments?
 
-12. **`README.md`**: A text file containing useful reference information about your project.
+I haven't incorporated Userbase Payments into the theme at this stage. For the time being I start with the basics and then increment over time. However, as with the forgot password example shown above, you will still be able to leverage the Userbase SDK and integrate this into your Gatsby website accordingly.
 
-## 🎓 Learning Gatsby
-
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.org/). Here are some places to start:
-
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.org/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
-
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
-
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/gatsbyjs/gatsby-starter-default)
-
-<!-- AUTO-GENERATED-CONTENT:END -->
+Please refer to the [Userbase SDK documentation](https://userbase.com/docs/sdk/) for further information.
