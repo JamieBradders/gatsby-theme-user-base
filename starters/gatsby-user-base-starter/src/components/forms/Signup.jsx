@@ -16,7 +16,7 @@ const SignupForm = () => {
       email: "",
       username: "",
       password: "",
-      rememberMe: "none",
+      rememberMe: process.env.REMEMBER_ME,
     },
     onSubmit: async (values) => {
       setLoading(true);

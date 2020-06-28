@@ -23,7 +23,7 @@ const LoginForm = () => {
       const res = await signIn({
         username: values.username,
         password: values.password,
-        rememberMe: "local",
+        rememberMe: process.env.REMEMBER_ME,
       });
 
       if (res.error) {
