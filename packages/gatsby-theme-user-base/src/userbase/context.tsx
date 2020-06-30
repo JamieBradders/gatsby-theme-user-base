@@ -6,7 +6,7 @@ import { init } from "./helpers";
 
 export const UserbaseContext = createContext({});
 
-export const UserbaseProvider = ({ children, appId }) => {
+function UserbaseProvider({ children, appId }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const setUser = (session: Session) => {
@@ -45,12 +45,10 @@ export const UserbaseProvider = ({ children, appId }) => {
       {children}
     </UserbaseContext.Provider>
   );
-};
+}
 
-export const useUserbase = () => {
-  const session = useContext(UserbaseContext);
+export function useUserbase() {
+  return useContext(UserbaseContext);
+}
 
-  return {
-    ...session,
-  };
-};
+export default UserbaseProvider;

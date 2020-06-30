@@ -1,7 +1,7 @@
 {
   "name": "gatsby-theme-user-base",
   "description": "A Gatsby Theme to incorporate Userbase into your Gatsby website.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Jamie Bradley <jamie@endeavour-digital.com>",
   "main": "index.js",
   "dependencies": {
