@@ -4,7 +4,7 @@ import { useUserbase } from "gatsby-theme-user-base";
 import { useEffect } from "react";
 import { navigate } from "gatsby";
 
-export default () => {
+const Account = () => {
   const [state] = useUserbase();
 
   useEffect(() => {
@@ -22,3 +22,5 @@ export default () => {
     </Layout>
   );
 };
+
+export default Account;
